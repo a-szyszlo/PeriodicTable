@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>Edit item</h2>
+
+<form #form="ngForm">
+  <mat-dialog-content>
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input
+        matInput
+        [(ngModel)]="data.name"
+        name="name"
+        required
+        #nameModel="ngModel"
+      />
+      <mat-error *ngIf="nameModel.invalid && nameModel.touched">
+        Name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Mass</mat-label>
+      <input
+        matInput
+        type="number"
+        [(ngModel)]="data.weight"
+        name="weight"
+        required
+        step="0.0001"
+        min="0"
+        #weightModel="ngModel"
+      />
+      <mat-error *ngIf="weightModel.invalid && weightModel.touched">
+        Enter a valid molecular weight (positive number)
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Symbol</mat-label>
+      <input
+        matInput
+        [(ngModel)]="data.symbol"
+        name="symbol"
+        required
+        #symbolModel="ngModel"
+      />
+      <mat-error *ngIf="symbolModel.invalid && symbolModel.touched">
+        Symbol is required
+      </mat-error>
+    </mat-form-field>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="cancel()">Cancel</button>
+    <button
+      mat-button
+      color="primary"
+      (click)="save()"
+      [disabled]="form.invalid"
+    >
+      Save
+    </button>
+  </mat-dialog-actions>
+</form>
